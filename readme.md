@@ -21,5 +21,5 @@
 ## Preview
 
 <p align="center">
- <img align="center" width="90%" src="https://github.com/Lu-Clemente/loginWithTouchId/blob/main/assets/images/loginScreen.png">
+ <img align="center" height="520px" src="https://github.com/Lu-Clemente/loginWithTouchId/blob/main/assets/images/loginScreen.png">
 </p>
