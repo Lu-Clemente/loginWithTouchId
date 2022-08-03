@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { AuthUserProvider } from './hooks/useAuth';
 
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
@@ -14,7 +15,9 @@ export default function App() {
   } else {
     return (
       <SafeAreaProvider>
-        <Navigation colorScheme={colorScheme} />
+        <AuthUserProvider>
+          <Navigation colorScheme={colorScheme} />
+        </AuthUserProvider>
         <StatusBar />
       </SafeAreaProvider>
     );
