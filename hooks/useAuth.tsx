@@ -2,7 +2,6 @@ import React, {
     createContext, useContext, useEffect, useState
 } from 'react';
 import { Alert } from 'react-native';
-import TouchID from 'react-native-touch-id';
 import * as LocalAuthentication from 'expo-local-authentication';
 
 interface AuthUserContextData {

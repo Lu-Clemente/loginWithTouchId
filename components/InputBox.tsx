@@ -1,6 +1,12 @@
 import React from "react";
-import { StyleProp, Text, TextInput, View, ViewStyle } from "react-native";
-import { styles } from "./styles";
+import {
+    StyleProp,
+    Text,
+    TextInput,
+    View,
+    ViewStyle,
+    StyleSheet
+} from "react-native";
 
 interface Props {
     userInput: string;
@@ -23,5 +29,27 @@ const InputBox: React.FC<Props> = ({ userInput, setUserInput, label, style, secu
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+      width: "100%",
+      marginBottom: 5
+    },
+    input: {
+      width: "100%",
+      height: 50,
+      paddingHorizontal: 15,
+      paddingVertical: 5,
+      borderRadius: 8,
+      backgroundColor: "#eee",
+      elevation: 8
+    },
+    text: {
+      fontSize: 15,
+      fontWeight: "500",
+      color: "#2705FA",
+      marginBottom: 5
+    }
+  });
 
 export default InputBox;
