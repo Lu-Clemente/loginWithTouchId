@@ -2,7 +2,7 @@ import { gql, ApolloServer } from "apollo-server";
 
 // Database type
 interface dbTypes {
-    id: string | number;
+    id: any;
     shippedDate: string;
     arrivalDate: string;
     itemName: string;
@@ -28,8 +28,8 @@ const typeDefs = gql`
     }
 
     type Mutation {
-        create(id: ID!, shippedDate: String!, arrivalDate: String!, itemName: String!, value: Int): Order
-        update(id: ID!, shippedDate: String, arrivalDate: String, itemName: String, value: Int): Order
+        create(id: ID!, shippedDate: String!, arrivalDate: String!, itemName: String!, value: Float): Order
+        update(id: ID!, shippedDate: String, arrivalDate: String, itemName: String, value: Float): Order
         delete(id: ID!): Boolean
     }
 `
@@ -58,6 +58,7 @@ const resolvers = {
                 order.itemName = itemName ? itemName : order.itemName;
                 order.value = value ? value : order.value;
             }
+            return order
         },
         delete: (_: any, { id }: any) => {
             const filterOrder = orders.filter(order => order.id !== id)
