@@ -1,7 +1,16 @@
 import { gql, ApolloServer } from "apollo-server";
 
+// Database type
+interface dbTypes {
+    id: string | number;
+    shippedDate: string;
+    arrivalDate: string;
+    itemName: string;
+    value?: number;
+}
+
 // Fake databse
-const orders = [];
+let orders: dbTypes[] = [];
 
 //Types
 const typeDefs = gql`
@@ -24,3 +33,36 @@ const typeDefs = gql`
         delete(id: ID!): Boolean
     }
 `
+const resolvers = {
+    Query: {
+        orders: () => {
+            return orders
+        },
+        order: (_: any, { id }: any) => {
+            return orders.find(order => order.id === id)
+        }
+    },
+    Mutation: {
+        create: (_: any, { id, shippedDate, arrivalDate, itemName, value = 0 }: dbTypes) => {
+            const order = { id, shippedDate, arrivalDate, itemName, value };
+            orders.push(order);
+            return order;
+        },
+        update: (_: any, { id, shippedDate, arrivalDate, itemName, value }: dbTypes) => {
+            const order = orders.find(order => order.id === id);
+            
+            if(order) {
+                order.id = order.id;
+                order.shippedDate = shippedDate ? shippedDate : order.shippedDate;
+                order.arrivalDate = arrivalDate ? arrivalDate : order.arrivalDate;
+                order.itemName = itemName ? itemName : order.itemName;
+                order.value = value ? value : order.value;
+            }
+        },
+        delete: (_: any, { id }: any) => {
+            const filterOrder = orders.filter(order => order.id !== id)
+            orders = filterOrder;
+            return true;
+        }
+    }
+}
