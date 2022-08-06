@@ -66,3 +66,7 @@ const resolvers = {
         }
     }
 }
+
+// Initialize server
+const app = new ApolloServer({ typeDefs, resolvers })
+app.listen().then(({ url }) => console.log(`Server running at ${url}`))
