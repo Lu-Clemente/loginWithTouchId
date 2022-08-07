@@ -1,38 +1,26 @@
-import { StyleSheet } from 'react-native';
-
-import EditScreenInfo from '../components/EditScreenInfo';
+import { ScrollView, StyleSheet } from 'react-native';
 import { Text, View } from '../components/Themed';
-import { RootTabScreenProps } from '../../types';
 import Card from '../components/Card';
 import { useQuery } from '@apollo/client';
 import { allOrders } from '../graphQL/queires';
-import { useEffect } from 'react';
 
-export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
+export default function TabOneScreen() {
 
 const { loading, error, data } = useQuery(allOrders);
 
-useEffect(() => {
-  if (error) {
-    console.log(error)
-  }
-  if (data) {
-    console.log(data)
-  }
-}, [data, error])
-
   return (
     <View style={styles.container}>
+      <ScrollView style={styles.scrollview}>
       {
         loading
         ? <Text>Loading...</Text>
         : error
         ? <Text>{error}</Text>
-        : data.orders.map(({ itemName }: any) => (
-          <Card itemName={itemName} />
+        : data.orders.map(({ id, itemName, arrivalDate, shippedDate, value }: any) => (
+          <Card key={id} itemName={itemName} arrivalDate={arrivalDate} shippedDate={shippedDate} value={value} />
         ))
       }
-      {/* <View style={styles.separator} lightColor="#fff" darkColor="rgba(255,255,255,0.1)" /> */}
+      </ScrollView>
     </View>
   );
 }
@@ -41,15 +29,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    padding: 15,
+    
+  },
+  scrollview: {
+    width: "100%",
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
   },
 });
