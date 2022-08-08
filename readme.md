@@ -12,9 +12,15 @@
 
 3. Install the project:
 
-`$ yarn install` or `$ npm install`
+`$ yarn install`
 
-4. Run the project:
+4. Run the API Server:
+
+`$ yarn server`
+
+5. Feed the temporary database using the mutations at Apollo server
+
+6. Run the project:
 
 `$ expo start`
 
