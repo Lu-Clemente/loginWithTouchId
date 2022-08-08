@@ -4,6 +4,7 @@ import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 import Colors from "../constants/Colors";
 import Size from "../constants/Layout";
+import { dateStringToDateFormat } from "../helpers/dates";
 
 interface Props {
     id?: string;
@@ -25,13 +26,13 @@ const Card: React.FC<Props> = ({
         <View style={styles.container}>
             <Text style={styles.title}>{itemName}</Text>
             <View style={styles.datesView}>
-                <Text style={styles.shipped}>{`Shipped: ${shippedDate}`}</Text>
+                <Text style={styles.shipped}>{`Shipped: ${dateStringToDateFormat(shippedDate)}`}</Text>
                 <FontAwesomeIcon
                     icon={faArrowRightLong}
                     size={18}
                     style={styles.arrow}
                 />
-                <Text style={styles.arrival}>{`Arrival: ${arrivalDate}`}</Text>
+                <Text style={styles.arrival}>{`Arrival: ${dateStringToDateFormat(arrivalDate)}`}</Text>
             </View>
             <View style={styles.price}>
                 <Text>{value ? `Price: $${value.toFixed(2)}` : "Price: --.--"}</Text>
