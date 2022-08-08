@@ -7,6 +7,8 @@ import client from './src/graphQL/client';
 import useCachedResources from './src/hooks/useCachedResources';
 import useColorScheme from './src/hooks/useColorScheme';
 import Navigation from './src/navigation';
+import React from 'react';
+import { DeliveriesProvider } from './src/hooks/useDeliveriesQuery';
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -19,7 +21,9 @@ export default function App() {
       <ApolloProvider client={client}>
         <SafeAreaProvider>
           <AuthUserProvider>
-            <Navigation colorScheme={colorScheme} />
+            <DeliveriesProvider>
+              <Navigation colorScheme={colorScheme} />
+            </DeliveriesProvider>
           </AuthUserProvider>
           <StatusBar />
         </SafeAreaProvider>
