@@ -1,14 +1,29 @@
-import { StyleSheet } from 'react-native';
+import { useQuery } from '@apollo/client';
+import React, { useEffect } from 'react';
+import { ScrollView, StyleSheet } from 'react-native';
+import Card from '../components/Card';
 
-import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
+import { allOrders } from '../graphQL/queires';
+import { useDeliveriesQuery } from '../hooks/useDeliveriesQuery';
 
 export default function TabTwoScreen() {
+
+  const { pendings, loading, error, checkDate } = useDeliveriesQuery();
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab Two</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabTwoScreen.tsx" />
+      <ScrollView style={styles.scrollview}>
+        {
+          loading
+            ? <Text>Loading...</Text>
+            : error
+              ? <Text>{error}</Text>
+              : pendings.map(({ id, itemName, arrivalDate, shippedDate, value }: any) => (
+                <Card key={id} itemName={itemName} arrivalDate={arrivalDate} shippedDate={shippedDate} value={value} />
+              ))
+        }
+      </ScrollView>
     </View>
   );
 }
@@ -17,15 +32,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+
+  },
+  scrollview: {
+    width: "100%",
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
   },
 });
