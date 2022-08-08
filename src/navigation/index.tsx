@@ -71,7 +71,11 @@ function BottomTabNavigator() {
         component={TabOneScreen}
         options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
           title: 'Delivered Orders',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="check" color={color} />,
+          tabBarLabel: "Delivered",
+          tabBarLabelStyle: {
+            fontSize: 12
+          },
           headerRight: () => (
             <Pressable
               onPress={() => {
@@ -95,8 +99,12 @@ function BottomTabNavigator() {
         name="TabTwo"
         component={TabTwoScreen}
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Pending deliveries',
+          tabBarIcon: ({ color }) => <TabBarIcon name="bookmark" color={color} />,
+          tabBarLabel: "Pending",
+          tabBarLabelStyle: {
+            fontSize: 12
+          }
         }}
       />
     </BottomTab.Navigator>

@@ -1,7 +1,10 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
+import serverURL from "./serverURL"
+
+const { androidEmulator, port } = serverURL;
 
 const client = new ApolloClient({
-    uri: "http://10.0.2.2:4000/",
+    uri: `${androidEmulator}:${port}/`,
     cache: new InMemoryCache()
 });
 
