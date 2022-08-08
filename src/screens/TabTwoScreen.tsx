@@ -1,15 +1,13 @@
-import { useQuery } from '@apollo/client';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import Card from '../components/Card';
 
 import { Text, View } from '../components/Themed';
-import { allOrders } from '../graphQL/queires';
 import { useDeliveriesQuery } from '../hooks/useDeliveriesQuery';
 
 export default function TabTwoScreen() {
 
-  const { pendings, loading, error, checkDate } = useDeliveriesQuery();
+  const { pendings, loading, error } = useDeliveriesQuery();
 
   return (
     <View style={styles.container}>

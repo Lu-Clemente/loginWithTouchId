@@ -1,12 +1,11 @@
 import { ScrollView, StyleSheet } from 'react-native';
 import { Text, View } from '../components/Themed';
 import Card from '../components/Card';
-import { useQuery } from '@apollo/client';
-import { allOrders } from '../graphQL/queires';
+import { useDeliveriesQuery } from '../hooks/useDeliveriesQuery';
 
 export default function TabOneScreen() {
 
-const { loading, error, data } = useQuery(allOrders);
+  const { delivereds, loading, error } = useDeliveriesQuery();
 
   return (
     <View style={styles.container}>
@@ -16,7 +15,7 @@ const { loading, error, data } = useQuery(allOrders);
         ? <Text>Loading...</Text>
         : error
         ? <Text>{error}</Text>
-        : data.orders.map(({ id, itemName, arrivalDate, shippedDate, value }: any) => (
+        : delivereds.map(({ id, itemName, arrivalDate, shippedDate, value }: any) => (
           <Card key={id} itemName={itemName} arrivalDate={arrivalDate} shippedDate={shippedDate} value={value} />
         ))
       }
