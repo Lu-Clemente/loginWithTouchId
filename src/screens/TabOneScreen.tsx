@@ -1,13 +1,11 @@
 import { ScrollView, StyleSheet } from 'react-native';
 import { Text, View } from '../components/Themed';
 import Card from '../components/Card';
-import { useQuery } from '@apollo/client';
-import { allOrders } from '../graphQL/queires';
 import { useDeliveriesQuery } from '../hooks/useDeliveriesQuery';
 
 export default function TabOneScreen() {
 
-  const { delivereds, loading, error, checkDate } = useDeliveriesQuery();
+  const { delivereds, loading, error } = useDeliveriesQuery();
 
   return (
     <View style={styles.container}>
