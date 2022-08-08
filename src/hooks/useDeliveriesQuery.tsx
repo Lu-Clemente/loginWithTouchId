@@ -30,8 +30,6 @@ const DeliveriesProvider = function ({ children }: { children: any }) {
     const [pendings, setPendings] = useState<IData[]>([]);
 
     const checkDate = (arrivalDate: string) => {
-        // Format("2022-08-07 05:10:06")
-        // const today = dateStringToDateFormat(todayDateString())
         const today = dateStringToTimestamp(todayDateString())
 
         if (dateStringToTimestamp(arrivalDate) < today) {
