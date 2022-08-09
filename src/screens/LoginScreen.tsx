@@ -41,6 +41,7 @@ const Login = () => {
                     setUserInput={setPassword}
                     label="Password"
                     style={{ marginTop: 10 }}
+                    secure={true}
                 />
 
                 <Text style={styles.passwordText}>Or use your finger print as password</Text>
