@@ -20,6 +20,8 @@
 
 5. Feed the temporary database using the mutations at Apollo server
 
+`Visit the indicated url at the terminal from which server is running`
+
 6. Run the project:
 
 `$ expo start`
